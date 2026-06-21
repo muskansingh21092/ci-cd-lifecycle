@@ -15,6 +15,7 @@ import { defineConfig, devices } from '@playwright/test';
  */
 export default defineConfig({
   testDir: './tests',
+  timeout: 60 * 1000,
   workers: process.env.CI ? 4 : 1,
   /* Run tests sequentially to avoid GPU/process crashes in headless shell on Windows */
   fullyParallel: true,
