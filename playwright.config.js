@@ -16,7 +16,7 @@ export default defineConfig({
   testDir: './tests',
   workers: process.env.CI ? 4 : 1,
   /* Run tests sequentially to avoid GPU/process crashes in headless shell on Windows */
-  fullyParallel: false,
+  fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* 1 retry locally catches transient worker crashes; 2 on CI for flaky network */
