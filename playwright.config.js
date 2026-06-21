@@ -21,7 +21,7 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   /* 1 retry locally catches transient worker crashes; 2 on CI for flaky network */
   retries: process.env.CI ? 2 : 1,
-  workers: 1,
+  // workers: 1
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
