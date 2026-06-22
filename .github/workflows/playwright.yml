@@ -67,8 +67,11 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Run Regression Tests
-        run: npx playwright test --grep @regression  # ← only runs @regression tests
-          
+        run: npx playwright test --grep "@regression" --grep-invert "@smoke"
+
+      - name: Rename regression report
+        run: mv playwright-report regression-report
+
       - name: Regression Report  
         uses: Azure/static-web-apps-deploy@v1
         with:
