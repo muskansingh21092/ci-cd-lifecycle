@@ -30,7 +30,10 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Run Smoke Tests
-        run: npx playwright test --grep @smoke     # ← only runs @smoke tests
+        run: npx playwright test --grep "@smoke" --grep-invert "@regression"     # ← only runs @smoke tests
+
+      - name: Rename smoke report
+        run: mv playwright-report smoke-report
 
       - name: Smoke Report  
         uses: Azure/static-web-apps-deploy@v1
@@ -38,7 +41,7 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_POLITE_OCEAN_0AAE0AD10 }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          app_location: "playwright-report"
+          app_location: "smoke-report"
           output_location: ""
 
   # ── JOB 2: Run only @regression tests AFTER smoke passes ──
@@ -72,5 +75,5 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_POLITE_OCEAN_0AAE0AD10 }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          app_location: "playwright-report"
+          app_location: "regression-report"
           output_location: ""
